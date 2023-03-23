@@ -31,10 +31,10 @@ class aboutFragment : Fragment() {
         val mySubscriberButton: Button = view.findViewById(R.id.btn_subscribe)
 
         // On Click
-        myHomeButton.setOnClickListener {
+        myHomeButton.setOnClickListener { // Navigates to home fragment
             Navigation.findNavController(view).navigate(R.id.action_aboutFragment_to_homeFragment)
         }
-        mySubscriberButton.setOnClickListener {
+        mySubscriberButton.setOnClickListener { // Navigates to newsletter fragment
             Navigation.findNavController(view).navigate(R.id.action_aboutFragment_to_newsletterFragment)
         }
         return view

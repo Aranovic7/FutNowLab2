@@ -7,16 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.Navigation
-
-
 class homeFragment : Fragment() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,11 +22,12 @@ class homeFragment : Fragment() {
         val myAboutBtn: Button = view.findViewById(R.id.btn_about)
         val myFunctionsdBtn: Button = view.findViewById(R.id.btn_functions)
 
-        myAboutBtn.setOnClickListener {
+        // On Click
+        myAboutBtn.setOnClickListener { // Navigates to about fragment
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_aboutFragment)
         }
 
-        myFunctionsdBtn.setOnClickListener {
+        myFunctionsdBtn.setOnClickListener { // Navigates to functions fragment
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_functionsFragment)
         }
 

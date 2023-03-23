@@ -12,6 +12,12 @@
         android:theme="@style/Theme.MyLab2"
         tools:targetApi="31">
         <activity
+            android:name=".testViewModel"
+            android:exported="false" />
+        <activity
+            android:name=".ViewModel"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
