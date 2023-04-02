@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_newsletterFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_newsletterFragment_to_viewmodel"
+            app:destination="@id/viewmodel" />
     </fragment>
     <fragment
         android:id="@+id/functionsFragment"
@@ -46,5 +49,14 @@
         <action
             android:id="@+id/action_functionsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewmodel"
+        android:name="com.example.mylab2.viewmodel"
+        android:label="fragment_viewmodel"
+        tools:layout="@layout/fragment_viewmodel" >
+        <action
+            android:id="@+id/action_viewmodel_to_newsletterFragment"
+            app:destination="@id/newsletterFragment" />
     </fragment>
 </navigation>

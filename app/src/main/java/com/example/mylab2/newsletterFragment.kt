@@ -1,31 +1,28 @@
 package com.example.mylab2
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
+import android.widget.EditText
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 
 
 class newsletterFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     // Initialization
-    lateinit var viewModelGreeting: Greeting
     private val users = mutableListOf<String>() //Mutable Array
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,12 +33,11 @@ class newsletterFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_newsletter, container, false)
 
         // ID's
-        val inputEmail = view.findViewById<TextView>(R.id.et_emailInput)
-        val subscribeBtn = view.findViewById<Button>(R.id.btn_subscribeNow)
-        val myViewModelGreeting = view.findViewById<TextView>(R.id.tv_viewModelGreeting)
+        val inputEmail = view.findViewById<EditText>(R.id.et_emailInput)
+        val navigationViewModel = view.findViewById<Button>(R.id.btn_viewmodel)
 
         // On Click
-        subscribeBtn.setOnClickListener {
+        view.findViewById<Button>(R.id.btn_subscribeNow).setOnClickListener {
             val email = inputEmail.text.toString() // Variable email takes the value of the email input and converts it to a string
             if(email.isNotEmpty()) {
                 users.add(email) // If the email input is not empty, then add the value to our Array "
@@ -52,13 +48,13 @@ class newsletterFragment : Fragment() {
                         Log.d("Emails ", users.toString())
                     }
                     .show()
-                viewModelGreeting.greeting = inputEmail.text.toString()
+                inputEmail.text.clear()
             } else {
                 val text = "You need to type in email." // If user press button on empty input display a classic toast message
                 Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
             }
-            viewModelGreeting.myGreeting().let { // Making our greeting textview component in a viewmodel
-                myViewModelGreeting.text = viewModelGreeting.greeting
+            navigationViewModel.setOnClickListener {
+             Navigation.findNavController(view).navigate(R.id.action_newsletterFragment_to_viewmodel)
             }
         }
         return view
