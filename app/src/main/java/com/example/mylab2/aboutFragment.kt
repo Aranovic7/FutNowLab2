@@ -30,7 +30,7 @@ class aboutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_about, container, false)
@@ -50,10 +50,11 @@ class aboutFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_aboutFragment_to_homeFragment)
         }
         btn_subscribe.setOnClickListener { // Navigates to newsletter fragment
-            Navigation.findNavController(view).navigate(R.id.action_aboutFragment_to_newsletterFragment)
+            Navigation.findNavController(view)
+                .navigate(R.id.action_aboutFragment_to_newsletterFragment)
         }
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             tv_firstTextView.text = savedInstanceState.getString("tv_firstTextView_text")
             tv_secondTextView.text = savedInstanceState.getString("tv_secondTextView_text")
             tv_thirdTextView.text = savedInstanceState.getString("tv_thirdTextView_text")
@@ -68,12 +69,17 @@ class aboutFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("tv_firstTextView_text", tv_firstTextView.text.toString())
-        outState.putString("tv_secondTextView_text", tv_secondTextView.text.toString())
-        outState.putString("tv_thirdTextView_text", tv_thirdTextView.text.toString())
-        outState.putString("tv_lastTextView_text", tv_lastTextView.text.toString())
-        outState.putBoolean("btn_home_enabled", btn_home.isEnabled)
-        outState.putBoolean("btn_subscribe_enabled", btn_subscribe.isEnabled)
-        outState.putInt("image_res_id", R.drawable.aboutbackgroundimage)
+        if (outState != null) {
+            try {
+                outState.putString("tv_firstTextView_text", tv_firstTextView.text.toString())
+                outState.putString("tv_secondTextView_text", tv_secondTextView.text.toString())
+                outState.putString("tv_thirdTextView_text", tv_thirdTextView.text.toString())
+                outState.putString("tv_lastTextView_text", tv_lastTextView.text.toString())
+                outState.putBoolean("btn_home_enabled", btn_home.isEnabled)
+                outState.putBoolean("btn_subscribe_enabled", btn_subscribe.isEnabled)
+                outState.putInt("image_res_id", R.drawable.aboutbackgroundimage)
+            } catch (_: Exception) {
+            }
+        }
     }
 }
